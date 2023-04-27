@@ -8,6 +8,8 @@ let div;
 let p;
 let text
 let rad;
+let ver = "false";
+let res;
 
 // --- DIV ---
 
@@ -21,15 +23,23 @@ button.addEventListener("click", start);
 // --- FUNCTIONS ---
 
 function start() {
-    difficulty_sel = document.getElementById("difficulty").value;
-    if (difficulty_sel == 'easy') {
-        easy();
+    if (ver == "true") {
+        document.getElementById("grid").innerHTML = ""
+        ver = "false";
     }
-    else if (difficulty_sel == 'normal') {
-        normal();
-    }
-    else if (difficulty_sel == 'hard') {
-        hard();
+    
+    if (ver == "false") {
+        difficulty_sel = document.getElementById("difficulty").value;
+        if (difficulty_sel == 'easy') {
+            easy();
+        }
+        else if (difficulty_sel == 'normal') {
+            normal();
+        }
+        else if (difficulty_sel == 'hard') {
+            hard();
+        }
+        ver = "true";
     }
 }
 
@@ -37,6 +47,7 @@ function start() {
 
 function add(radq, counter) {
     div = document.createElement("div");
+    div.classList.add("square");
     div.style.width = "calc(70vh / "+ radq +")";
     div.style.height = "calc(70vh / "+ radq +")";
     div.style.border = "1px solid black";
@@ -46,7 +57,6 @@ function add(radq, counter) {
     
     p = document.createElement("p");
     text = document.createTextNode(counter);
-    p.style.display = "none";
     p.appendChild(text);
     div.appendChild(p);
 
